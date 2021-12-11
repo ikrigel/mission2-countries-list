@@ -69,11 +69,13 @@ $( function() {
 $(function allCountries() {
 
     $("#buttontt9").on('mouseover click',async function () {
-       //debugger;
+       debugger;
         try {
-           let  url= "https://restcountries.eu/rest/v2/all";
+        //    let  url= "https://restcountries.eu/rest/v2/all";
+              let  url= "https://restcountries.com/v2/all";
            
             const allCountries = await getDataAsync(url);
+            console.log(allCountries);
             let contentHTML1 =`
       <tr>
           <th>Name</th>
@@ -93,10 +95,12 @@ $(function allCountries() {
       contentHTML1 += `
       <tr><td>${allCountries[i].name}</td>
       <td>${allCountries[i].topLevelDomain}</td>
-      <td>${allCountries[i].capital.length!==0?allCountries[i].capital:'No capital'}</td>
+    
+      <td>${allCountries[i].capital!==undefined?allCountries[i].capital:'No capital'}</td>
       <td>${curr}</td>
       <td><img src="${allCountries[i].flag}" width="30%" height="auto"/>
-      <td>${allCountries[i].borders.length!==0?allCountries[i].borders:'No borders'}</td>
+      
+      <td>${allCountries[i].borders!==undefined?allCountries[i].borders:'No borders'}</td>
       </td></tr>`
   }
                $("#countriesList").html("");
@@ -127,7 +131,9 @@ $(function allCountries() {
        debugger;
        let countryName=$("#inputCountry1").val();
         try {
-           let  url= `https://restcountries.eu/rest/v2/name/${countryName}`;
+        //    let  url= `https://restcountries.eu/rest/v2/name/${countryName}`;
+              let  url= `https://restcountries.com/v2/name/${countryName}`;
+            //   let  url= `https://restcountries.com/v3.1/name/${countryName}`;
            
             const allCountries = await getDataAsync(url);
             let contentHTML1 =`
@@ -149,10 +155,10 @@ $(function allCountries() {
       contentHTML1 += `
       <tr><td>${allCountries[i].name}</td>
       <td>${allCountries[i].topLevelDomain}</td>
-      <td>${allCountries[i].capital.length!==0?allCountries[i].capital:'No capital'}</td>
+      <td>${allCountries[i].capital!==undefined?allCountries[i].capital:'No capital'}</td>
       <td>${curr}</td>
       <td><img src="${allCountries[i].flag}" width="50" height="50"/>
-      <td>${allCountries[i].borders.length!==0?allCountries[i].borders:'No borders'}</td>
+      <td>${allCountries[i].borders!==undefined?allCountries[i].borders:'No borders'}</td>
       </td></tr>`
   }
                $("#countriesList").html("");
@@ -228,7 +234,7 @@ $(function chuckJoke() {
   $(function usersList() {
 
     $("#buttontt8").on('mouseover click',async function () {
-       debugger;
+       //debugger;
         try {
            let  url= "https://reqres.in/api/users";
            
